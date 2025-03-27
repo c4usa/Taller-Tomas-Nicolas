@@ -1,4 +1,5 @@
-//Tomás González. Nicolas Acosta
+//Tomas González, Nicolas Acosta
+
 #include <stdio.h>
 
 int main()
@@ -17,6 +18,10 @@ int main()
         printf("\t6.Salir\n");
         printf("Seleccione una opción: ");
         scanf("%d", &opcion);
+        if (opcion != 1)
+        {
+            continue;
+        }
         switch (opcion)
         {
         case 1:
@@ -37,7 +42,7 @@ int main()
                 {
                     printf("El valor es incorrecto, vuelva a ingresar\n");
                 }
-            } while (val!=1);
+            } while (val != 1);
 
             printf("Ingrese el precio unitario del producto: ");
             while (scanf("%f", &precio) != 1 || precio < 0)
@@ -54,14 +59,13 @@ int main()
             printf("Ingrese la cantidad a vender: ");
             fflush(stdin);
             value = scanf("%d", &cantidad);
-        } while (val!=1);
-        if(cantidad==20)
+        } while (val != 1);
+        if (cantidad == 20)
         {
             descuento = 10;
-            precioFinal = precio * (descuento/100);
-            precioDescontado=precio-precioFinal;
+            precioFinal = precio * (descuento / 100);
+            precioDescontado = precio - precioFinal;
             printf("\tPrecio descontado: $%.2f\n", precioDescontado);
-
         }
             float totalVenta = cantidad * precioFinal;
             stock -= cantidad;
@@ -100,3 +104,4 @@ int main()
 
     return 0;
 }
+
