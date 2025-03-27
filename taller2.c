@@ -1,3 +1,4 @@
+//Tomás González. Nicolas Acosta
 #include <stdio.h>
 
 int main()
