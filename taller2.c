@@ -57,9 +57,9 @@ int main()
         if(cantidad==20)
         {
             descuento = 10;
-            precioFinal = precio * (1 - descuento/100);
-            
-            printf("\tPrecio descontado: $%.2f\n", precioFinal);
+            precioFinal = precio * (descuento/100);
+            precioDescontado=precio-precioFinal;
+            printf("\tPrecio descontado: $%.2f\n", precioDescontado);
 
         }
             float totalVenta = cantidad * precioFinal;
@@ -95,7 +95,7 @@ int main()
         default:
             printf("\tOpción inválida. Intente nuevamente.\n");
         }
-    } while (opcion != 5);
+    } while (opcion != 6);
 
     return 0;
 }
