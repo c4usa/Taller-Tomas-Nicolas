@@ -80,7 +80,7 @@ int main()
                 fflush(stdin);
             } while (val != 1 || cantidad<0);
 
-            if (cantidad == 20)
+            if (cantidad == 20 || cantidad >20)
             {
                 descuento = 10;
                 precioFinal = precio - (precio * (descuento / 100));
@@ -145,7 +145,7 @@ int main()
             break;
 
         default:
-            printf("Seleccione una opción correcta (1-6)\n");
+            printf("Opción invalida. Intente de nuevo)\n");
         }
     } while (opcion != 6);
 
