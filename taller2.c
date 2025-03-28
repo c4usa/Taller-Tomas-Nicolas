@@ -16,8 +16,14 @@ int main()
         printf("\t5. Mostrar total de ganancias\n");
         printf("\t6. Salir\n");
         printf("Seleccione una opción: ");
-        scanf("%d", &opcion);
-        fflush(stdin);
+
+        if (scanf("%d", &opcion) != 1)
+        {
+            while (getchar() != '\n')
+                ;
+            opcion = 0;
+        }
+
         if (datosIngresados == 0 && opcion != 1)
         {
             printf("Primero debe ingresar los datos del producto. Intente nuevamente\n");
@@ -38,28 +44,29 @@ int main()
             {
                 printf("Ingrese la cantidad inicial en stock: ");
                 val = scanf("%d", &stock);
-                if (val != 1)
+                if (val != 1 || stock < 0)
                 {
-                    printf("Valor invalido. Intente nuevamente\n");
+                    printf("Valor inválido. Intente nuevamente\n");
                     while (getchar() != '\n')
                         ;
-                }
-                else if (stock < 0)
-                {
-                    printf("Valor invalido. Intente nuevamente\n");
                 }
                 fflush(stdin);
             } while (val != 1 || stock < 0);
 
-            printf("Ingrese el precio unitario del producto: ");
-            while (scanf("%f", &precio) != 1 || precio < 0)
+            do
             {
-                printf("Valor invalido. Intente nuevamente: ");
-                while (getchar() != '\n')
-                    ;
+                printf("Ingrese el precio unitario del producto: ");
+                val = scanf("%f", &precio);
+                if (val != 1 || precio < 0)
+                {
+                    printf("Valor inválido. Intente nuevamente\n");
+                    while (getchar() != '\n')
+                        ;
+                }
                 fflush(stdin);
-            }
-            datosIngresados = 1; 
+            } while (val != 1 || precio < 0);
+
+            datosIngresados = 1;
             break;
 
         case 2:
@@ -67,20 +74,20 @@ int main()
             {
                 printf("Ingrese la cantidad a vender: ");
                 val = scanf("%d", &cantidad);
-                if (val != 1)
+                if (val != 1 || cantidad < 0)
                 {
-                    printf("Valor invalido. Intente nuevamente\n");
+                    printf("Valor inválido. Intente nuevamente\n");
                     while (getchar() != '\n')
                         ;
                 }
-                else if (cantidad<0)
+                else if (cantidad > stock)
                 {
-                    printf("Valor invalido. Intente nuevamente\n");
+                    printf("El valor que ingreso es mayor al stock. Intente nuevamente\n");
                 }
                 fflush(stdin);
-            } while (val != 1 || cantidad<0);
+            } while (val != 1 || cantidad < 0 || cantidad > stock);
 
-            if (cantidad == 20 || cantidad >20)
+            if (cantidad >= 20)
             {
                 descuento = 10;
                 precioFinal = precio - (precio * (descuento / 100));
@@ -92,40 +99,28 @@ int main()
                 precioFinal = precio;
             }
 
-            if (cantidad > stock)
-            {
-                printf("Stock insuficiente para la venta.\n");
-            }
-            else
-            {
-                float totalVenta = cantidad * precioFinal;
-                stock -= cantidad;
-                totalGanancias += totalVenta;
-                printf("\n\tVenta realizada exitosamente.\n");
-                printf("\tTotal de la venta: $%.2f\n", totalVenta);
-                printf("\tStock restante: %d\n", stock);
-            }
+            float totalVenta = cantidad * precioFinal;
+            stock -= cantidad;
+            totalGanancias += totalVenta;
+            printf("\n\tVenta realizada exitosamente.\n");
+            printf("\tTotal de la venta: $%.2f\n", totalVenta);
+            printf("\tStock restante: %d\n", stock);
             break;
 
         case 3:
-            printf("Ingrese la cantidad a agregar en el stock: ");
-            if (scanf("%d", &cantidad) != 1)
+            do
             {
-                printf("La cantidad tiene que ser un número entero.\n");
-                while (getchar() != '\n')
-                    ;
-                fflush(stdin);
-            }
-            else if (cantidad < 1)
-            {
-                printf("La cantidad tiene que ser mayor que cero. Intente nuevamente.\n");
-            }
-            else
-            {
-                stock += cantidad;
-                printf("\tNuevo stock: %d\n", stock);
-            }
-            fflush(stdin);
+                printf("Ingrese la cantidad a agregar en el stock: ");
+                if (scanf("%d", &cantidad) != 1 || cantidad < 1)
+                {
+                    printf("Vlaor invalido. Intente nuevamente\n");
+                    while (getchar() != '\n')
+                        ;
+                }
+            } while (cantidad < 1);
+
+            stock += cantidad;
+            printf("\tNuevo stock: %d\n", stock);
             break;
 
         case 4:
@@ -145,9 +140,10 @@ int main()
             break;
 
         default:
-            printf("Opción invalida. Intente de nuevo)\n");
+            printf("Opción inválida. Intente de nuevo\n");
         }
     } while (opcion != 6);
 
     return 0;
 }
+
