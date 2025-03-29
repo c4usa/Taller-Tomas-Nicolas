@@ -1,5 +1,8 @@
 //Tomás González, Nicolás Acosta
 #include <stdio.h>
+// Tomás González, Nicolás Acosta
+#include <stdio.h>
+
 int main()
 {
     char nombre[30];
@@ -9,7 +12,7 @@ int main()
     do
     {
         printf("\nMenú de Opciones:\n");
-        printf("\t1. Ingresar ID del producto, nombre y cantidad en stock\n");
+        printf("\t1. Ingreso ID del producto, el nombre del producto y la cantidad en stock\n");
         printf("\t2. Vender producto\n");
         printf("\t3. Reabastecer producto\n");
         printf("\t4. Mostrar información del producto\n");
@@ -37,10 +40,9 @@ int main()
             scanf("%d", &id);
             while (getchar() != '\n')
                 ;
-
             printf("Ingrese el nombre del producto: ");
             fgets(nombre, 30, stdin);
-
+            fflush(stdin);
             do
             {
                 printf("Ingrese la cantidad inicial en stock: ");
@@ -51,6 +53,7 @@ int main()
                     while (getchar() != '\n')
                         ;
                 }
+                fflush(stdin);
             } while (val != 1 || stock < 0);
 
             do
@@ -63,6 +66,7 @@ int main()
                     while (getchar() != '\n')
                         ;
                 }
+                fflush(stdin);
             } while (val != 1 || precio < 0);
 
             datosIngresados = 1;
@@ -81,8 +85,9 @@ int main()
                 }
                 else if (cantidad > stock)
                 {
-                    printf("El valor ingresado es mayor al stock. Intente nuevamente\n");
+                    printf("El valor que ingreso es mayor al stock. Intente nuevamente\n");
                 }
+                fflush(stdin);
             } while (val != 1 || cantidad < 0 || cantidad > stock);
 
             if (cantidad >= 20)
@@ -90,7 +95,7 @@ int main()
                 descuento = 10;
                 precioFinal = precio - (precio * (descuento / 100));
                 precioDescontado = precioFinal;
-                printf("\tPrecio con descuento: $%.2f\n", precioDescontado);
+                printf("\tPrecio descontado: $%.2f\n", precioDescontado);
             }
             else
             {
@@ -111,7 +116,7 @@ int main()
                 printf("Ingrese la cantidad a agregar en el stock: ");
                 if (scanf("%d", &cantidad) != 1 || cantidad < 1)
                 {
-                    printf("Valor inválido. Intente nuevamente\n");
+                    printf("Vlaor invalido. Intente nuevamente\n");
                     while (getchar() != '\n')
                         ;
                 }
@@ -144,3 +149,4 @@ int main()
 
     return 0;
 }
+
