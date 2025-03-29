@@ -24,7 +24,7 @@ int main()
             opcion = 0;
         }
 
-        if (datosIngresados == 0 && opcion != 1)
+        if (opcion!=6 && datosIngresados == 0 && opcion != 1)
         {
             printf("Primero debe ingresar los datos del producto. Intente nuevamente\n");
             continue;
@@ -146,4 +146,3 @@ int main()
 
     return 0;
 }
-
