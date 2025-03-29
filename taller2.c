@@ -10,7 +10,7 @@ int main()
     do
     {
         printf("\nMenú de Opciones:\n");
-        printf("\t1. Ingreso ID del producto, el nombre del producto y la cantidad en stock\n");
+        printf("\t1. Ingreso ID del producto,nombre y cantidad en stock\n");
         printf("\t2. Vender producto\n");
         printf("\t3. Reabastecer producto\n");
         printf("\t4. Mostrar información del producto\n");
@@ -83,7 +83,7 @@ int main()
                 }
                 else if (cantidad > stock)
                 {
-                    printf("El valor que ingreso es mayor al stock. Intente nuevamente\n");
+                    printf("El valor ingresado es mayor al stock. Intente nuevamente\n");
                 }
                 fflush(stdin);
             } while (val != 1 || cantidad < 0 || cantidad > stock);
@@ -114,7 +114,7 @@ int main()
                 printf("Ingrese la cantidad a agregar en el stock: ");
                 if (scanf("%d", &cantidad) != 1 || cantidad < 1)
                 {
-                    printf("Vlaor invalido. Intente nuevamente\n");
+                    printf("Valor invalido. Intente nuevamente\n");
                     while (getchar() != '\n')
                         ;
                 }
