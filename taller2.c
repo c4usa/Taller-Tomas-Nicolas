@@ -1,5 +1,3 @@
-//Tomás González, Nicolás Acosta
-#include <stdio.h>
 // Tomás González, Nicolás Acosta
 #include <stdio.h>
 
